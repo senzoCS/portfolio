@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senzo Mnisi | Front-End Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+
+        header {
+            background-color: #161b22;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(to right, #1f6feb, #58a6ff);
+            color: white;
+        }
+
+        #hero canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn.primary {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+
+        .btn.secondary {
+            background: #21262d;
+            color: #58a6ff;
+        }
+
+        /* About Section */
+        #about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Skill Bars */
+        .skill {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .skill .bar {
+            width: 100%;
+            background: #21262d;
+            border-radius: 5px;
+            height: 1.2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #58a6ff, #1f6feb);
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .skill.html .progress { width: 85%; }
+        .skill.css .progress { width: 83%; }
+        .skill.js .progress { width: 70%; }
+        .skill.sql .progress { width: 20%; }
+
+        /* Projects */
+        .projects {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project {
+            background: #21262d;
+            padding: 1.5rem;
+            border-radius: 5px;
+            flex: 1 1 calc(50% - 1rem);
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Certificates Section */
+        #certificates {
+            margin-top: 2rem;
+        }
+
+        #certificates img {
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem;
+            border-radius: 5px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: #161b22;
+            padding: 2rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #contact h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        #contact a {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: #58a6ff;
+            color: #0d1117;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background: #161b22;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Senzo Mnisi</h1>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <canvas></canvas>
+            <h1>Hi, I'm Senzo Mnisi</h1>
+            <p>Your future front-end developer, turning designs into reality!</p>
+            <a href="#contact" class="btn primary">Hire Me</a>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p id="typed-about"></p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skill html">
+                <label>HTML</label>
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="skill css">
+                <label>CSS</label>
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="skill js">
+                <label>JavaScript</label>
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="skill sql">
+                <label>SQL</label>
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <img src="path-to-image.jpg" alt="Bakery Website">
+                    <h3>Bakery Website</h3>
+                    <a href="file:///C:/Users/senzo/OneDrive/Documents/GitHub/HTML-bakery-/CB.Html">View Site</a>
+                </div>
+                <div class="project">
+                    <img src="path-to-image.jpg" alt="Bag Store Website">
+                    <h3>Bag Store Website</h3>
+                    <a href="file:///C:/Users/senzo/OneDrive/Documents/Custom%20Office%20Templates/OneDrive/Documents/bag%20website/index.html">View Site</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates">
+            <h2>Certificates</h2>
+            <div class="certificates">
+                <img src="certificate1.png" alt="Certificate 1">
+                <img src="certificate2.png" alt="Certificate 2">
+                <img src="certificate3.png" alt="Certificate 3">
+                <img src="certificate4.png" alt="Certificate 4">
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email me for collaborations or inquiries:</p>
+            <a href="mailto:senzojuniour12@gmail.com">Email Me</a>
+        </section>
+    </main>
+
+    <script>
+        // GSAP Sphere Animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#hero canvas') });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.SphereGeometry(5, 32, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0x1f6feb, wireframe: true });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+
+        camera.position.z = 15;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            sphere.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Typed.js Animation
+        const typed = new Typed('#typed-about', {
+            strings: [
+                "Ever since I wrote my first line of code, I’ve been captivated by the magic of building something extraordinary from scratch. The ability to take an idea, pour it into a screen, and see it come to life feels like unlocking the ultimate superpower. As a self-taught front-end developer, I’ve fallen in love with the creative chaos of design, the logic of programming, and the endless opportunities to problem-solve. I thrive on debugging challenges—each error is like a puzzle waiting to be cracked, and every solved problem makes me a better coder. While my journey is just beginning, I’m committed to continuous growth. Whether it’s late-night coding marathons or absorbing new frameworks, I’m eager to learn and contribute. To me, coding is more than just lines of code; it’s my way of shaping the digital world and leaving a mark, one project at a time."
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            showCursor: true,
+            loop: false,
+        });
+    </script>
+</body>
+</html>
+   
+   
+   
+   
+   
+    
